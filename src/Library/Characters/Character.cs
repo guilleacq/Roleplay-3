@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace RoleplayGame
 {
-    public class Character
+    public class Character 
     {
         protected int health = 100;
         protected List<IItem> items = new List<IItem>();

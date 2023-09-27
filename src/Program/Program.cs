@@ -26,6 +26,10 @@ namespace Program
             gimli.Cure();
 
             Console.WriteLine($"Someone cured Gimli. Gimli now has ❤️ {gimli.Health}");
+
+
+            Enemy ogro = new Enemy("Ogro", 50);
+
         }
     }
 }
