@@ -37,6 +37,10 @@ namespace Program
             gandalf.ReceiveAttack(ogre.AttackValue);
             Console.WriteLine($"{gandalf.Name} was attacked by {ogre.Name} and now has ❤️ {gandalf.Health}");
 
+            Gargoyle pedro = new Gargoyle("Pedro");
+            gandalf.AttackCharacter(pedro);
+            Console.WriteLine($"{pedro.Name} has been attacked by {gandalf.Name}, now he has {pedro.Health} and {gandalf.Name} has {gandalf.Vp} victory points.");
+
 
 
         }
