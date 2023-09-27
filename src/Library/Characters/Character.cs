@@ -7,7 +7,7 @@ namespace RoleplayGame
         protected int health = 100;
         protected List<IItem> items = new List<IItem>();
 
-        string Name { get; set; }
+        public string Name { get; private set; }
 
         public Character(string name)
         {
