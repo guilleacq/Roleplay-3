@@ -32,6 +32,11 @@ namespace Program
             giant.ReceiveAttack(gimli.AttackValue);
             Console.WriteLine($"{giant.Name} was attacked and now has ❤️ {giant.Health}");
 
+            Ogre ogre = new Ogre ("Shrek");
+            Console.WriteLine($"{ogre.Name} has ❤️ {ogre.Health}");
+            gandalf.ReceiveAttack(ogre.AttackValue);
+            Console.WriteLine($"{gandalf.Name} was attacked by {ogre.Name} and now has ❤️ {gandalf.Health}");
+
 
 
         }
