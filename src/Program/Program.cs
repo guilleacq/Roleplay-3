@@ -40,6 +40,8 @@ namespace Program
             Gargoyle pedro = new Gargoyle("Pedro");
             gandalf.AttackCharacter(pedro);
             Console.WriteLine($"{pedro.Name} has been attacked by {gandalf.Name}, now he has {pedro.Health} and {gandalf.Name} has {gandalf.Vp} victory points.");
+            gandalf.AttackCharacter(pedro);
+            Console.WriteLine($"{pedro.Name} has been attacked by {gandalf.Name}, now he has {pedro.Health} and {gandalf.Name} has {gandalf.Vp} victory points.");
 
 
 
