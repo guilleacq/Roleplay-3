@@ -49,7 +49,6 @@ namespace Program
             if (pedro.IsDead())
             {
                 Console.WriteLine($"{pedro.Name} ha muerto.");
-                // Puedes realizar otras acciones aquí, como eliminar al personaje del juego.
             }
 
         }
