@@ -7,5 +7,7 @@ public class Giant : Enemy
     public Giant(string name)
     :base(name, GIANT_VP)
     {
+        this.AddItem(new Axe());
+        this.AddItem(new Axe());
     }
 }
