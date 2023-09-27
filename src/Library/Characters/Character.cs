@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace RoleplayGame
 {
-    public class Character 
+    public class Character
     {
         protected int health = 100;
         protected List<IItem> items = new List<IItem>();
@@ -83,6 +83,12 @@ namespace RoleplayGame
         public void AttackCharacter(Character targetCharacter)
         {
             targetCharacter.ReceiveAttack(this.AttackValue);
+        }
+
+
+        public bool IsDead()
+        {
+            return this.Health <= 0;
         }
 
     }

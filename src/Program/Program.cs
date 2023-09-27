@@ -32,7 +32,7 @@ namespace Program
             giant.ReceiveAttack(gimli.AttackValue);
             Console.WriteLine($"{giant.Name} was attacked and now has ❤️ {giant.Health}");
 
-            Ogre ogre = new Ogre ("Shrek");
+            Ogre ogre = new Ogre("Shrek");
             Console.WriteLine($"{ogre.Name} has ❤️ {ogre.Health}");
             gandalf.ReceiveAttack(ogre.AttackValue);
             Console.WriteLine($"{gandalf.Name} was attacked by {ogre.Name} and now has ❤️ {gandalf.Health}");
@@ -42,8 +42,15 @@ namespace Program
             Console.WriteLine($"{pedro.Name} has been attacked by {gandalf.Name}, now he has {pedro.Health} and {gandalf.Name} has {gandalf.Vp} victory points.");
             gandalf.AttackCharacter(pedro);
             Console.WriteLine($"{pedro.Name} has been attacked by {gandalf.Name}, now he has {pedro.Health} and {gandalf.Name} has {gandalf.Vp} victory points.");
+            
+            //PARTE SANTIAGO
 
-
+            // Verificar si el personaje ha muerto antes de realizar una acción
+            if (pedro.IsDead())
+            {
+                Console.WriteLine($"{pedro.Name} ha muerto.");
+                // Puedes realizar otras acciones aquí, como eliminar al personaje del juego.
+            }
 
         }
     }
