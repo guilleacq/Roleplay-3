@@ -9,5 +9,14 @@ namespace RoleplayGame
         {
             this.Vp += vp;
         }
+
+        public void AttackCharacter(Enemy targetCharacter)
+        {
+            targetCharacter.ReceiveAttack(this.AttackValue);
+            if (targetCharacter.Health == 0)
+            {
+                this.AddVp(targetCharacter.Vp);
+            }
+        }
     }
 }

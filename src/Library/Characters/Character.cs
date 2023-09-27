@@ -80,5 +80,10 @@ namespace RoleplayGame
             }
         }
 
+        public void AttackCharacter(Character targetCharacter)
+        {
+            targetCharacter.ReceiveAttack(this.AttackValue);
+        }
+
     }
 }
