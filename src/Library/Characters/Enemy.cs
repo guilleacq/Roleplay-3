@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 namespace RoleplayGame
 {
-    public class Enemy : Hero
+    public class Enemy : Character
     {
         public int Vp { get; private set; }
 
