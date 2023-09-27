@@ -27,6 +27,13 @@ namespace Program
 
             Console.WriteLine($"Someone cured Gimli. Gimli now has ❤️ {gimli.Health}");
 
+            Giant giant = new Giant("Rodolfo the Giant");
+            Console.WriteLine($"{giant.Name} has ❤️ {giant.Health}");
+            giant.ReceiveAttack(gimli.AttackValue);
+            Console.WriteLine($"{giant.Name} was attacked and now has ❤️ {giant.Health}");
+
+
+
         }
     }
 }
