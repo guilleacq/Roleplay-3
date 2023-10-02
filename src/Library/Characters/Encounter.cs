@@ -5,26 +5,33 @@ namespace RoleplayGame
 {
     public class Encounter
     {
-        public List<Hero> Heroes { get ; private set ; }
-        public List<Enemy> Enemies { get ; private set; }
-        public Encounter( List<Hero> heroes, List<Enemy> enemies )
+        private List<Hero> heroes;
+        private List<Enemy> enemies;
+        private bool inCombat = true;
+        public Encounter(List<Hero> heroes, List<Enemy> enemies)
         {
-            this.Heroes = heroes;      
-            this.Enemies = enemies;       
+            if (heroes.Count > 0 && enemies.Count > 0)
+            {
+                this.heroes = heroes;      
+                this.enemies = enemies;       
+            }
         }
         public void DoEncounter()
         {
-            
+            while (inCombat)
+            {
+
+
+
+
+
+            }
         }
 
-        private void AttackEnemyToHero()
+        private void CheckCombatStatus()
         {
-
-        }
-
-        private void AttackHeroToEnemy()
-        {
-            
+            if (enemies.Count <= 0 || heroes.Count <= 0)
+                inCombat = false;
         }
     }
 }
