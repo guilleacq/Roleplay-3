@@ -44,14 +44,12 @@ namespace RoleplayGame
         
         private List<Character> HeroToArray()
         {
-            List<Character> heroesArray = new List<Character>(this.heroes.Cast<Character>()).ToList();
-            return heroesArray;
+            return new List<Character>(this.heroes.Cast<Character>()).ToList();
         }
 
         private List<Character> EnemiesToArray()
         {
-            List<Character> enemiesArray = new List<Character>(this.enemies.Cast<Character>()).ToList();
-            return enemiesArray;
+            return new List<Character>(this.enemies.Cast<Character>()).ToList();
         }
 
         private void CheckCombatStatus()
@@ -98,11 +96,11 @@ namespace RoleplayGame
                 foreach (Character attacker in attackers)
                 {
                     attacker.AttackCharacter(targets[index]);
-                    index += 1;
-                    if (targets[index].Health <= 0)
+                    if (targets[index].IsDead())
                     {
                         targets.Remove(targets[index]);
                     }
+                    index += 1;
                 }
             }
         }
