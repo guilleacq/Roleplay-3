@@ -6,7 +6,7 @@ namespace RoleplayGame
         public Ogre(string name)
         : base(name, VP)
         {
-            this.AddItem(new Club()); //Club es un garrote
+            this.AddItem(new Club()); //"Club" es un garrote
             this.AddItem(new Club());
             this.AddItem(new Armor());
         }
