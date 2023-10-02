@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using RoleplayGame;
 
 namespace Program
@@ -42,7 +43,7 @@ namespace Program
             Console.WriteLine($"{pedro.Name} has been attacked by {gandalf.Name}, now he has {pedro.Health} and {gandalf.Name} has {gandalf.Vp} victory points.");
             gandalf.AttackCharacter(pedro);
             Console.WriteLine($"{pedro.Name} has been attacked by {gandalf.Name}, now he has {pedro.Health} and {gandalf.Name} has {gandalf.Vp} victory points.");
-            
+
             //PARTE SANTIAGO
 
             // Verificar si el personaje ha muerto antes de realizar una acción
@@ -50,6 +51,17 @@ namespace Program
             {
                 Console.WriteLine($"{pedro.Name} ha muerto.");
             }
+
+            List<Hero> heroes = new List<Hero>();
+            heroes.Add(gimli);
+            heroes.Add(gandalf);
+            List<Enemy> enemies = new List<Enemy>();
+
+            enemies.Add(ogre);
+            enemies.Add(giant);
+            Encounter prueba = new Encounter(heroes, enemies);
+
+            Console.WriteLine(prueba.DoEncounter);
 
         }
     }
