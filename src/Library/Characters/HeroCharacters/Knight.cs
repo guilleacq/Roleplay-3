@@ -11,6 +11,5 @@ namespace RoleplayGame
             this.AddItem(new Armor());
             this.AddItem(new Shield());
         }
-
     }
 }
