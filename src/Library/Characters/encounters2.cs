@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
@@ -6,12 +7,14 @@ using System.Net.NetworkInformation;
 
 namespace RoleplayGame
 {
-    public class Encounter
+    public class Encounter2
     {
         private List<Hero> heroes;
         private List<Enemy> enemies;
         private bool inCombat = true;
-        public Encounter(List<Hero> heroes, List<Enemy> enemies)
+        private List<Character> charactersToRemove;
+
+        public Encounter2(List<Hero> heroes, List<Enemy> enemies)
         {
             // Acá deberíamos hacer manejo de excepciones 
             if (heroes.Count > 0 && enemies.Count > 0)
@@ -37,12 +40,12 @@ namespace RoleplayGame
                     Attack(enemiesList, heroesList);
                 }
                 else
-                {
+                {   
                     Attack(heroesList, enemiesList);
                 }
                 turn += 1;
-
-                CheckCombatStatus();
+                
+                this.CheckCombatStatus(enemiesList, heroesList);
             }
             return;
         }
@@ -57,26 +60,41 @@ namespace RoleplayGame
             return new List<Character>(this.enemies.Cast<Character>()).ToList();
         }
 
-        private void CheckCombatStatus()
+        private void CheckCombatStatus(List<Character> currentEnemies, List<Character> currentHeroes)
         {
-            if (enemies.Count <= 0 || heroes.Count <= 0)
+            if ((currentHeroes.Count <= 0 ) || (currentEnemies.Count <= 0)){
                 inCombat = false;
-                
+                // Entonces cuando se termina el encuentro devuelvo la vida a los heroes que posean +150 vp.
+                if (heroes.Count > 0)
+                {
+                    foreach( Hero hero in this.heroes)
+                    {
+                        if (hero.Vp >= 150)
+                            hero.Cure();
+                    }
+                }
+            }
         }
 
         private void Attack(List<Character> attackers, List<Character> targets)
         {
+            charactersToRemove  = new List<Character>();
+            
+            Character currentAttacker;
+            Character currentTarget;
+
             if (targets.Count == 1)
             {
+                Character target = targets[0];
                 int index = 0;
-                Character currentAttacker;
-                while (!targets[0].IsDead() || index <= attackers.Count)
+                currentTarget = targets[0];
+                while (!currentTarget.IsDead() || index <= attackers.Count)
                 {
                     currentAttacker = attackers[index];
                     currentAttacker.AttackCharacter(targets[0]);
                     index += 1;
                 }
-                if (targets[0].IsDead())
+                if (currentTarget.IsDead())
                 {
                     targets.Remove(targets[0]);
                 }
@@ -88,36 +106,38 @@ namespace RoleplayGame
                 int index;
                 foreach (Character attacker in attackers)
                 {
-                    index = turn % targets.Count;
-                    attacker.AttackCharacter(targets[index]);
-                    if (targets[index].IsDead())
+                    if (targets.Count > 0)
                     {
-                        targets.Remove(targets[index]);
-                    }
-                    else
-                    {
-                        turn += 1;
+                        index = turn % targets.Count;
+                        currentTarget = targets[index];
+                        attacker.AttackCharacter(currentTarget);
+                    
+                        if (currentTarget.IsDead())
+                        {
+                            targets.Remove(currentTarget);
+                        }
+                        else
+                        {
+                            turn += 1;
+                        }
                     }
                 }
             }
 
             else if (targets.Count >= attackers.Count)
             {
-                int index = 0;
-                foreach (Character attacker in attackers)
+                for(int index = 0; index < attackers.Count; index++)
                 {
-                    attacker.AttackCharacter(targets[index]);
-                    if (targets[index].IsDead())
+                    currentTarget = targets[index];
+                    currentAttacker = attackers[index];
+                    currentAttacker.AttackCharacter(currentTarget);
+                    
+                    if (currentTarget.IsDead())
                     {
-                        targets.Remove(targets[index]);
-                    }
-                    else
-                    {
-                        index += 1;
+                        targets.Remove(currentTarget);
                     }
                 }
             }
         }
-
     }
 }
