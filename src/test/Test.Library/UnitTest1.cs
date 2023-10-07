@@ -73,7 +73,7 @@ namespace Test.Library
             List<Enemy> enemies = new List<Enemy>();
             enemies.Add(Giant);
             enemies.Add(Doc);
-            Encounter2 prueba = new Encounter2(heroes, enemies);
+            Encounter prueba = new Encounter(heroes, enemies);
             
             Assert.AreNotEqual( 100 , Giant.Health);// no deveria ser 100, porque el caballero venceria al gigante
 
