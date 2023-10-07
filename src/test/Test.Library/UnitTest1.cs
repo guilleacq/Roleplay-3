@@ -74,9 +74,12 @@ namespace Test.Library
             enemies.Add(Giant);
             enemies.Add(Doc);
             Encounter2 prueba = new Encounter2(heroes, enemies);
-            Assert.AreEqual( 100 , Giant.Health);
-            Assert.AreEqual( 100 , Rex.Health);
-            Assert.AreEqual( 0 , Rex.Vp);
+            
+            Assert.AreNotEqual( 100 , Giant.Health);// no deveria ser 100, porque el caballero venceria al gigante
+
+            Assert.AreNotEqual( 100 , Rex.Health);//no deveria ser 100, porque salio de un combate 
+
+            Assert.AreNotEqual( 0 , Rex.Vp);//no deveria ser 0, porque vencio al gigante
         }
     }
 }
