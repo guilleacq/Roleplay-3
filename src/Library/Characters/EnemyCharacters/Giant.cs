@@ -3,7 +3,7 @@ using RoleplayGame;
 
 public class Giant : Enemy
 {
-    private const int GIANT_VP = 180;
+    private const int GIANT_VP = 50;
     public Giant(string name)
     :base(name, GIANT_VP)
     {

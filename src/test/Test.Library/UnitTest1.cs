@@ -15,21 +15,21 @@ namespace Test.Library
         [Test]
          public void TestHero()
         {
-            Knight  Rex = new Knight ("Rex");
+            Knight rex = new Knight ("Rex");
 
-            Assert.AreEqual( 100 , Rex.Health);
-            Assert.AreEqual( "Rex" , Rex.Name);
-            Assert.AreEqual( 0 , Rex.Vp);
+            Assert.AreEqual( 100 , rex.Health);
+            Assert.AreEqual( "Rex" , rex.Name);
+            Assert.AreEqual( 0 , rex.Vp);
         }
 
 
         [Test]
         public void TestEnemy()
         {
-            Giant Giant = new Giant("Pepe");
-            Assert.AreEqual( 100 , Giant.Health);
-            Assert.AreEqual( "Pepe" , Giant.Name);
-            Assert.AreEqual( 180 , Giant.Vp);
+            Giant giant = new Giant("Pepe");
+            Assert.AreEqual( 100 , giant.Health);
+            Assert.AreEqual( "Pepe" , giant.Name);
+            Assert.AreEqual( 50 , giant.Vp);
 
         }
 
@@ -37,49 +37,53 @@ namespace Test.Library
 
         public void testAddItem() 
         {
-             Knight  Rex = new Knight ("Rex");
-             Sword strom = new Sword();
-             Rex.AddItem(strom); //tiene 2 espadas que hacen 40 de daño en total
-            Assert.AreEqual( 40 , Rex.AttackValue);
+            Knight  rex = new Knight ("Rex");
+            Sword strom = new Sword();
+            rex.AddItem(strom); //tiene 2 espadas que hacen 40 de daño en total
+            Assert.AreEqual( 40 , rex.AttackValue);
         }
 
         [Test]
         public void TestAtackEnemy()
         {
-            Giant Giant = new Giant("Pepe");
-            Knight  Rex = new Knight ("Rex");
-            Rex.AttackCharacter(Giant);
-            Assert.AreEqual( 80 , Giant.Health);
+            Giant giant = new Giant("Pepe");
+            Knight  rex = new Knight ("Rex");
+            rex.AttackCharacter(giant);
+            Assert.AreEqual( 80 , giant.Health);
         }
+
         [Test]
         public void TestEnemyAtackHero()
         {
-            Giant Giant = new Giant("Pepe");
-            Knight  Rex = new Knight ("Rex");
-            Giant.AttackCharacter(Rex);
-            Assert.AreEqual( 89 , Rex.Health);
+            Giant giant = new Giant("Pepe");
+            Knight rex = new Knight ("Rex");
+            giant.AttackCharacter(rex);
+            Assert.AreEqual( 89 , rex.Health);
         }
 
         [Test]
         public void TestEncounter()
         {
-            Giant Giant = new Giant("Pepe");
-            Giant Doc = new Giant("doc");
-            Knight  Rex = new Knight ("Rex");
+            Giant giant = new Giant("Pepe");
+            Giant doc = new Giant("doc");
+            Knight rex = new Knight ("Rex");
+
             Sword strom = new Sword();
-            Rex.AddItem(strom);
+            rex.AddItem(strom);
+
             List<Hero> heroes = new List<Hero>();
-            heroes.Add(Rex);
+            heroes.Add(rex);
+
             List<Enemy> enemies = new List<Enemy>();
-            enemies.Add(Giant);
-            enemies.Add(Doc);
-            Encounter2 prueba = new Encounter2(heroes, enemies);
-            
-            Assert.AreNotEqual( 100 , Giant.Health);// no deveria ser 100, porque el caballero venceria al gigante
+            enemies.Add(giant);
+            enemies.Add(doc);
 
-            Assert.AreNotEqual( 100 , Rex.Health);//no deveria ser 100, porque salio de un combate 
+            Encounter prueba = new Encounter(heroes, enemies);
+            prueba.DoEncounter();
 
-            Assert.AreNotEqual( 0 , Rex.Vp);//no deveria ser 0, porque vencio al gigante
+            Assert.AreEqual( 0 , giant.Health); 
+            Assert.AreEqual( 0 , rex.Health);
+            Assert.AreNotEqual( 0 , rex.Vp); // No debería ser 0 porque mató a los dos enemy.
         }
     }
 }

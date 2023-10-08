@@ -61,8 +61,6 @@ namespace Program
             enemies.Add(giant);
             Encounter prueba = new Encounter(heroes, enemies);
 
-            Console.WriteLine(prueba.DoEncounter);
-
         }
     }
 }

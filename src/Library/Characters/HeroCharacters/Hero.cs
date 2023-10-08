@@ -13,7 +13,7 @@ namespace RoleplayGame
         public void AttackCharacter(Enemy targetCharacter)
         {
             targetCharacter.ReceiveAttack(this.AttackValue);
-            if (targetCharacter.Health == 0)
+            if (targetCharacter.IsDead())
             {
                 this.AddVp(targetCharacter.Vp);
             }

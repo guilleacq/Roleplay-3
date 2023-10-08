@@ -87,15 +87,16 @@ namespace RoleplayGame
                 // Si hay un único atacado, los atacantes actúan hasta que se muera o hasta que no hayan más atacantes.
                 int index = 0;
                 currentTarget = targets[0];
-                while (!currentTarget.IsDead() || index <= attackers.Count)
+                while (!currentTarget.IsDead() && index < attackers.Count)
                 {
                     currentAttacker = attackers[index];
-                    currentAttacker.AttackCharacter(targets[0]);
-                    index += 1;
+                    currentAttacker.AttackCharacter(currentTarget);
+                    index++;
                 }
+
                 if (currentTarget.IsDead())
                 {
-                    targets.Remove(targets[0]);
+                    targets.Remove(currentTarget);
                 }
             }
 
