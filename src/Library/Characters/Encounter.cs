@@ -33,15 +33,44 @@ namespace RoleplayGame
             {
                 enemiesList = EnemiesToList();
                 heroesList = HeroToList();
+                Console.WriteLine($"\nattack number : {turn}\n");
 
                 // Con esto determino quién ataca.
                 if (turn % 2 == 0)
                 {
                     Attack(enemiesList, heroesList);
+                    List<Hero> heroesToRemove = new List<Hero>();
+                    foreach(Hero hero in this.heroes)
+                    {
+                        if (! heroesList.Contains(hero))
+                        {
+                            heroesToRemove.Add(hero);
+                        }
+                        Console.WriteLine($"{hero.Name} -- {hero.Health} --> {hero.VpObtained} vp");
+                    }
+
+                    foreach(Hero hero in heroesToRemove)
+                    {
+                        this.heroes.Remove(hero);
+                    }
                 }
                 else
                 {
                     Attack(heroesList, enemiesList);
+                    List<Enemy> enemiesToRemove = new List<Enemy>();
+                    foreach(Enemy enemy in this.enemies)
+                    {
+                        Console.WriteLine($"{enemy.Name} -- {enemy.Health}");
+                        if (! enemiesList.Contains(enemy))
+                        {
+                            enemiesToRemove.Add(enemy);
+                        }
+                    }
+
+                    foreach(Enemy enemy in enemiesToRemove)
+                    {
+                        this.enemies.Remove(enemy);
+                    }
                 }
                 turn += 1;
 
@@ -70,7 +99,7 @@ namespace RoleplayGame
                 {
                     foreach (Hero hero in this.heroes)
                     {
-                        if (hero.Vp >= 150)
+                        if (hero.VpObtained >= 5)
                             hero.Cure();
                     }
                 }
@@ -90,6 +119,7 @@ namespace RoleplayGame
                 while (!currentTarget.IsDead() && index < attackers.Count)
                 {
                     currentAttacker = attackers[index];
+                    Console.WriteLine($"Está atacando {currentAttacker.Name} a {currentTarget.Name}, lo ataca con {currentAttacker.AttackValue}");
                     currentAttacker.AttackCharacter(currentTarget);
                     index++;
                 }
@@ -113,6 +143,7 @@ namespace RoleplayGame
                     {
                         index = turn % targets.Count;
                         currentTarget = targets[index];
+                        Console.WriteLine($"Está atacando {attacker.Name} a {currentTarget.Name}, lo ataca con {attacker.AttackValue}");
                         attacker.AttackCharacter(currentTarget);
 
                         if (currentTarget.IsDead())
@@ -138,6 +169,7 @@ namespace RoleplayGame
                 {
                     currentTarget = targets[index];
                     currentAttacker = attackers[index];
+                    Console.WriteLine($"Está atacando {currentAttacker.Name} a {currentTarget.Name}, lo ataca con {currentAttacker.AttackValue}");
                     currentAttacker.AttackCharacter(currentTarget);
 
                     if (currentTarget.IsDead())

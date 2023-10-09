@@ -4,7 +4,7 @@ namespace RoleplayGame
     {
         private const int VP = 50;
         public Ogre(string name)
-        : base(name, VP)
+        : base(name)
         {
             this.AddItem(new Club()); //"Club" es un garrote
             this.AddItem(new Club());

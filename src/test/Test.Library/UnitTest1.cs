@@ -8,6 +8,8 @@ namespace Test.Library
 {
     public class Tests
     {
+        private Hero pedro;
+
         [SetUp]
         public void Setup()
         {
@@ -29,7 +31,7 @@ namespace Test.Library
             Giant giant = new Giant("Pepe");
             Assert.AreEqual( 100 , giant.Health);
             Assert.AreEqual( "Pepe" , giant.Name);
-            Assert.AreEqual( 50 , giant.Vp);
+            Assert.AreEqual( 1 , giant.Vp);
 
         }
 
@@ -67,12 +69,14 @@ namespace Test.Library
             Giant giant = new Giant("Pepe");
             Giant doc = new Giant("doc");
             Knight rex = new Knight ("Rex");
+            Knight pedro = new Knight ("pedro");
 
             Sword strom = new Sword();
             rex.AddItem(strom);
 
             List<Hero> heroes = new List<Hero>();
             heroes.Add(rex);
+            
 
             List<Enemy> enemies = new List<Enemy>();
             enemies.Add(giant);
@@ -82,8 +86,8 @@ namespace Test.Library
             prueba.DoEncounter();
 
             Assert.AreEqual( 0 , giant.Health); 
-            Assert.AreEqual( 0 , rex.Health);
-            Assert.AreNotEqual( 0 , rex.Vp); // No debería ser 0 porque mató a los dos enemy.
+            Assert.AreEqual( 1 , rex.Health);
+            Assert.AreEqual( 3 , rex.VpObtained); 
         }
     }
 }
